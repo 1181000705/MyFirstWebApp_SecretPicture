@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimaryDark">#00C32525</color>
+    <color name="colorPrimary">#0D293E</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="Mainolor">#FFFFFF</color>
+    <color name="nono">#00000000</color>
+    <color name="white">#ffffff</color>
+    <!--<color name="textColorPrimary">#00000000</color>-->
+    <color name="pushbtn">#7D7E7E</color>
+    <color name="black">#000000</color>
+
+    <color name="bg_biometric_prompt_dialog">#99000000</color>
+    <color name="text_quaternary">#CDCED0</color>
+    <color name="text_red">#FF5555</color>
+    <color name="text_green">#82C785</color>
+
+</resources>

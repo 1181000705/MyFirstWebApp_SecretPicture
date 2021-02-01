@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:descendantFocusability="blocksDescendants"
+    android:listSelector="@drawable/item_selector"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="140dp"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="8dp">
+
+        <ImageView
+            android:id="@+id/img_recy_item_1_pic"
+            android:layout_width="98dp"
+            android:layout_height="100dp"
+            android:layout_centerVertical="true"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:id="@+id/tv_recy_item_1_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_toRightOf="@id/img_recy_item_1_pic"
+            android:textColor="@color/black"
+            android:textSize="23dp" />
+
+        <TextView
+            android:id="@+id/tv_recy_item_1_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="41dp"
+            android:layout_toRightOf="@id/img_recy_item_1_pic"
+            android:textSize="18dp" />
+
+        <!--<Button-->
+            <!--android:id="@+id/btn_recy_item_1_detele"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="32dp"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:layout_marginLeft="260dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:background="@drawable/style_btn_detele"-->
+
+            <!--android:text="删除"-->
+
+            <!--android:textColor="#fcfcfc" />-->
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">闪钥1.2</string>
+    <string name="title_home">光认证</string>
+    <string name="title_dashboard">设备</string>
+    <string name="title_notifications">我</string>
+    <string name="biometric_dialog_cancel">取消</string>
+    <string name="biometric_dialog_title">指纹识别</string>
+    <string name="biometric_dialog_subtitle">请验证已有指纹</string>
+    <string name="biometric_dialog_state_normal">指纹感应</string>
+    <string name="biometric_dialog_state_failed">指纹验证失败，请重试</string>
+    <string name="biometric_dialog_state_error">验证失败，请用PIN验证</string>
+    <string name="biometric_dialog_state_error_enable_process">验证失败，安装失败</string>
+    <string name="biometric_dialog_state_succeeded">验证成功</string>
+    <string name="biometric_dialog_use_password">密码验证</string>
+    <string name="title_activity_dialog">dialogActivity</string>
+</resources>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".TwoFragment.useActivity">
+
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/obj_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="603dp">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/obj_recy_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:listSelector="@drawable/item_selector"/>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+    <LinearLayout style="@style/wrap_layout">
+
+        <Button
+
+            android:id="@+id/btn_adduser"
+
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:background="@drawable/style_btn_login"
+
+            android:text="添加权限用户"
+
+            android:textColor="#fcfcfc" />
+        <View style="@style/bg_line"/>
+        <Button
+
+            android:id="@+id/btn_querocrds"
+
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:background="@drawable/style_btn_login"
+
+            android:text="查询访客记录"
+
+            android:textColor="#fcfcfc" />
+
+    </LinearLayout>
+</LinearLayout>
