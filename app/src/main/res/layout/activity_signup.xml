@@ -71,6 +71,32 @@
                 <!--android:layout_gravity="center_horizontal"-->
 
 
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginLeft="16dp"
+
+                    android:layout_marginTop="16dp"
+
+                    android:layout_marginRight="16dp"
+
+                    android:hint="用户名"
+
+                    android:textColorHint="#a2c699">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edt_username"
+
+                    android:layout_width="match_parent"
+
+                    android:layout_height="wrap_content"
+
+                    android:baselineAligned="false"
+                    android:textColor="#090909" />
+
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
@@ -95,17 +121,18 @@
 
                         android:layout_height="wrap_content"
 
-                        android:textColor="#9966cc" />
+                        android:baselineAligned="false"
+                        android:textColor="#090909" />
 
                     <Button
 
                         android:id="@+id/btn_login1"
 
-                        android:layout_width="wrap_content"
+                        android:layout_width="98dp"
 
                         android:layout_height="32dp"
 
-                        android:layout_marginLeft="230dp"
+                        android:layout_marginLeft="195dp"
                         android:layout_weight="1"
 
                         android:background="@drawable/style_btn_login"
@@ -142,7 +169,7 @@
 
                         android:layout_height="wrap_content"
 
-                        android:textColor="#9966cc" />
+                        android:textColor="#131313" />
 
                 </com.google.android.material.textfield.TextInputLayout>
                 <com.google.android.material.textfield.TextInputLayout
@@ -170,7 +197,7 @@
 
                         android:layout_height="wrap_content"
 
-                        android:textColor="#9966cc" />
+                        android:textColor="#131313" />
 
                 </com.google.android.material.textfield.TextInputLayout>
                 <!--android:layout_gravity="center_horizontal"-->

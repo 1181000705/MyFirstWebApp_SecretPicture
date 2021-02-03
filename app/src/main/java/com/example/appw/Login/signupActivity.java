@@ -19,8 +19,10 @@ public class signupActivity extends AppCompatActivity {
     TextInputEditText edt_phone;
     TextInputEditText edt_yanzheng;
     TextInputEditText edt_pwdd;
+    TextInputEditText edt_username;
     Button btn_commit;
     Button bbsign;
+    public String username="0";
     public String phone="0";
     public String yanzheng="0";
     public String pwdd="0";
@@ -33,6 +35,7 @@ public class signupActivity extends AppCompatActivity {
         avLoadingIndicatorView.setIndicator("BallSpinFadeLoaderIndicator");
         avLoadingIndicatorView.hide();
 
+        edt_username = findViewById(R.id.edt_username);
         edt_phone = findViewById(R.id.edt_phone);
         edt_yanzheng = findViewById(R.id.edt_yanzheng);
         edt_pwdd=findViewById(R.id.edt_pwdd);
@@ -45,14 +48,15 @@ public class signupActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
+                username = edt_username.getText().toString().trim();
                 phone = edt_phone.getText().toString().trim();
                 yanzheng = edt_yanzheng.getText().toString().trim();
                 pwdd = edt_pwdd.getText().toString().trim();
-                if (TextUtils.isEmpty(phone) && TextUtils.isEmpty(yanzheng)&&TextUtils.isEmpty(pwdd)) {
+                if (TextUtils.isEmpty(username) && TextUtils.isEmpty(phone) && TextUtils.isEmpty(yanzheng)&&TextUtils.isEmpty(pwdd)) {
                     Toast.makeText(signupActivity.this, "user or pwd or yanzheng not null", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                Data.newuser=phone;
+                Data.newuser=username;
                 Data.newpwd=pwdd;
                 Data.Userid="5";
                 finish();

@@ -29,11 +29,11 @@ public class Data {
             "王瑶"
     };
     public static  String[] user_val={
-            "151****5894",
-            "181****2513",
-            "187****1322",
-            "182****5882",
-            "135****9682"
+            "151****5894",//new
+            "181****2513",//xia
+            "187****1322",//ma
+            "182****5882",//han
+            "135****9682"//wang
     };
     public static int[] userpic = {
             R.mipmap.user,
