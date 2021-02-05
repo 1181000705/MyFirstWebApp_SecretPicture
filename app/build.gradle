@@ -29,6 +29,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
     implementation 'androidx.vectordrawable:vectordrawable:1.1.0'
+    implementation files('libs\\annotations.jar')
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
@@ -42,4 +43,9 @@ dependencies {
     implementation 'com.jakewharton:butterknife:10.2.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
     implementation 'pub.devrel:easypermissions:3.0.0'
+    implementation 'com.android.support:design:27.1.1'
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+
+    implementation 'com.github.yalantis:ucrop:2.2.2'
+    implementation 'com.kevin:basedialog:1.0.2'
 }

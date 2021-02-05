@@ -39,20 +39,19 @@
         android:layout_alignParentBottom="true"
 
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="190dp"
-        android:src="@drawable/a51"
+        android:layout_marginBottom="250dp"
         android:background="@xml/btnshape"
-        >
+        android:src="@drawable/a51">
 
     </androidx.appcompat.widget.AppCompatImageButton>
         <!--android:src="@mipmap/one2" />-->
-    <ImageView
-        android:layout_width="198dp"
-        android:layout_height="129dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="67dp"
-        android:src="@mipmap/mybutton" />
+<!--    <ImageView-->
+<!--        android:layout_width="198dp"-->
+<!--        android:layout_height="129dp"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_marginBottom="67dp"-->
+<!--        android:src="@mipmap/mybutton" />-->
 
     <!--<Button-->
         <!--android:id="@+id/button"-->

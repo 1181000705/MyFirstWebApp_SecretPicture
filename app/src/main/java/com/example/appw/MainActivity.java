@@ -29,12 +29,10 @@ import com.example.appw.OneFragment.CallBackValue;
         String Pwd="non";
         BottomNavigationView bnView;
         ViewPager viewPager;
-//        Toolbar toolbar;
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_main);
-
 
             //顶部
 //            toolbar =findViewById(R.id.tool_bar);
@@ -55,7 +53,7 @@ import com.example.appw.OneFragment.CallBackValue;
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 int menuId = menuItem.getItemId();
           //  跳转指定页面：Fragment
-            switch (menuId) {
+            switch (menuId) {//没有用到
                 case R.id.navigation_home:
                     viewPager.setCurrentItem(0);break;
                 case R.id.navigation_dashboard:

@@ -64,7 +64,7 @@ public class OneFragment<onActivityResult, ovrride> extends Fragment implements 
     private String[] permissions = {Manifest.permission.CAMERA};
     private static final int CAMERA_PERMISSION_CODE = 1;
     FingerDialog mMyDialog;
-    MyDialog sMyDialog;
+    MyDialog sMyDialog;//设备
     @Nullable
 
     @Override
@@ -113,10 +113,10 @@ public class OneFragment<onActivityResult, ovrride> extends Fragment implements 
 ////                trytowway.setEnabled(true);
 //            }
 //        });
-        tryfin=view.findViewById(R.id.button2);
+        tryfin=view.findViewById(R.id.button2);//点图标
         tryfin.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) {//点设备
                 sMyDialog.setCancelable(true);
                 sMyDialog.show();
 //                tryfin.setEnabled(false);
@@ -195,7 +195,7 @@ public class OneFragment<onActivityResult, ovrride> extends Fragment implements 
 
     }
     @Override
-    public void OnCenterItemClick(FingerDialog dialog, View view) {
+    public void OnCenterItemClick(FingerDialog dialog, View view) {//无用
         switch (view.getId()){
             case R.id.finger:
                 Toast.makeText(getContext(),"okok",Toast.LENGTH_SHORT).show();
@@ -277,7 +277,6 @@ public class OneFragment<onActivityResult, ovrride> extends Fragment implements 
 
                 @Override
                 public void onCancel() {
-
                     Toast.makeText(getContext(), "onCancel", Toast.LENGTH_SHORT).show();
                 }
             });
