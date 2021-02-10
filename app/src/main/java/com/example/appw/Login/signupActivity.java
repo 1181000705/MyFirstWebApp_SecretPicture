@@ -1,13 +1,12 @@
 package com.example.appw.Login;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.appw.Data;
 import com.example.appw.R;
@@ -60,15 +59,6 @@ public class signupActivity extends AppCompatActivity {
                 Data.newpwd=pwdd;
                 Data.Userid="5";
                 finish();
-//                if ("威威喵".equals(user) && "123456".equals(pwd)) {
-//                    Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
-//                } else
-//                if (!"威威喵".equals(user)) {
-//                    edt_user.setError("用户名错误");
-//                }
-//                else if (!"123456".equals(pwd)) {
-//                    edt_pwd.setError("密码错误");
-//                }
             }
         });
 

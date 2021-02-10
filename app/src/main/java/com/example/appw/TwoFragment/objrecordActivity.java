@@ -103,7 +103,7 @@ public class objrecordActivity extends AppCompatActivity {
         //设置触发刷新的距离
         swipeRefreshLayout.setDistanceToTriggerSync(200);
         //设置滑动的距离
-        swipeRefreshLayout.setSlingshotDistance(400);
+        //swipeRefreshLayout.setSlingshotDistance(400);
 //        swipeRefreshLayout.setRefreshing(true);
 
         Thread thread=new Thread(){

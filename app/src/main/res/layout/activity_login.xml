@@ -47,21 +47,6 @@
 
                 android:orientation="vertical">
 
-                <!--<de.hdodenhof.circleimageview.CircleImageView-->
-                <!--<TextView-->
-                    <!--android:id="@+id/textView"-->
-                    <!--android:layout_width="match_parent"-->
-
-                    <!--android:layout_height="100dp"-->
-
-
-                    <!--android:layout_marginTop="16dp"-->
-
-                    <!--android:text="用户登录"-->
-                    <!--android:textSize="50dp"-->
-                    <!--android:textStyle="bold"-->
-                    <!--/>-->
-
                 <ImageView
                     android:layout_width="242dp"
                     android:layout_height="100dp"

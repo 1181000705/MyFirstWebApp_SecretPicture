@@ -1,8 +1,8 @@
 package com.example.appw.threeFragment;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.appw.R;
 public class instructionsActivity extends AppCompatActivity {

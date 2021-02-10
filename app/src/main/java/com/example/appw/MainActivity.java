@@ -1,32 +1,31 @@
 package com.example.appw;
 
 import android.os.Bundle;
+import android.view.MenuItem;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.viewpager.widget.ViewPager;
 
 import com.example.appw.Adapter.FragmentAdapter;
+import com.example.appw.OneFragment.OneFragment;
 import com.example.appw.TwoFragment.TwoFragment;
 import com.example.appw.threeFragment.ThreeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
-
-import android.view.MenuItem;
-
 import java.util.ArrayList;
 import java.util.List;
-
-import com.example.appw.OneFragment.CallBackValue;
 
 /**
      * Created by luo on 2019/7/3.
      */
 
-    public class MainActivity extends AppCompatActivity implements  CallBackValue{
+    public class MainActivity extends AppCompatActivity{
         public static  boolean norlogin=true;
-        String User="unLogin";
-        String Pwd="non";
+        //String User="unLogin";
+        //String Pwd="non";
         BottomNavigationView bnView;
         ViewPager viewPager;
         @Override
@@ -34,13 +33,13 @@ import com.example.appw.OneFragment.CallBackValue;
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_main);
 
-            //顶部
-//            toolbar =findViewById(R.id.tool_bar);
-//            setSupportActionBar(toolbar);
-            bnView = findViewById(R.id.nav_view);
+            initOneFragment();//新加的
+
+            bnView = findViewById(R.id.nav_view);//下三标
             viewPager = findViewById(R.id.view_pager);
             List<Fragment> fragments = new ArrayList<>();
             fragments.add(new OneFragment());
+            Fragment a = new OneFragment();
             fragments.add(new TwoFragment());
             fragments.add(new ThreeFragment());
 
@@ -53,7 +52,7 @@ import com.example.appw.OneFragment.CallBackValue;
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 int menuId = menuItem.getItemId();
           //  跳转指定页面：Fragment
-            switch (menuId) {//没有用到
+            switch (menuId) {
                 case R.id.navigation_home:
                     viewPager.setCurrentItem(0);break;
                 case R.id.navigation_dashboard:
@@ -82,23 +81,32 @@ import com.example.appw.OneFragment.CallBackValue;
                 }
             });
 
-
         }
 
+    /**
+     * 初始化内容Fragment
+     *
+     * @return void
+     */
+    public void initOneFragment() {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        OneFragment mFragment = OneFragment.newInstance();
+        transaction.replace(R.id.view_pager, mFragment, mFragment.getClass().getSimpleName());
+        transaction.commit();
+    }
 
-
-        //要获取的值  就是这个参数的值
-        @Override
-        public void SendMessageValue(String user,String pwd) {
-            User=user;
-            Pwd=pwd;
-        }
-        public String getUser(){
-            return User;
-        }
-        public String getPwd(){
-            return Pwd;
-        }
+//        //要获取的值  就是这个参数的值
+//        @Override
+//        public void SendMessageValue(String user,String pwd) {
+//            User=user;
+//            Pwd=pwd;
+//        }
+//        public String getUser(){
+//            return User;
+//        }
+//        public String getPwd(){
+//            return Pwd;
+//        }
 //
 //        public void LoginRequest(final String accountNumber, final String password) {
 //            //请求地址

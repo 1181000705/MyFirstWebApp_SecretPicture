@@ -16,6 +16,8 @@ import com.example.appw.R;
 import java.util.List;
 import java.util.Map;
 
+//import android.support.v7.widget.RecyclerView;
+
 
 public class RecyclerLineAdapterRecord extends RecyclerView.Adapter<RecyclerLineAdapterRecord.ViewHolder> {
 

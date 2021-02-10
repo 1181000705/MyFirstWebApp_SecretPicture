@@ -9,8 +9,16 @@
         <!--<item name="android:textColorPrimary">@color/Mainolor</item>-->
         <!--<item name="android:statusBarColor">@color/Mainolor</item>-->
         <!--<item name="android:windowLightStatusBar">false</item>-->
-
     </style>
+
+    <!-- 状态栏 -->
+    <style name="MyToolBar" parent="@android:style/Widget.Holo.Light.ActionBar">
+        <item name="android:background">?colorPrimary</item>
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:textColorSecondary">@android:color/white</item>
+        <item name="colorControlActivated">@android:color/white</item>
+    </style>
+
     <!-- 最外层样式 -->
     <style name="wrap_layout">
         <item name="android:orientation">vertical</item>

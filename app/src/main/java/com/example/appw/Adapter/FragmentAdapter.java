@@ -28,6 +28,9 @@ import java.util.List;
 
         }
 
+//        public FragmentAdapter(List<android.support.v4.app.Fragment> fragments, android.support.v4.app.FragmentManager supportFragmentManager) {
+//            super(fragments, supportFragmentManager);
+//        }
 
 
         @Override

@@ -26,6 +26,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+//import android.support.v4.widget.SwipeRefreshLayout;
+//import android.support.v7.widget.LinearLayoutManager;
+//import android.support.v7.widget.RecyclerView;
+
 public class MyDialog extends Dialog implements View.OnClickListener,RecyclerLineAdapter.OnItemClickListener {
     //    style引用style样式
     Button dialogbtn;
@@ -141,7 +145,7 @@ public class MyDialog extends Dialog implements View.OnClickListener,RecyclerLin
         swipeRefreshLayout.setDistanceToTriggerSync(200);
 
         //设置滑动的距离
-        swipeRefreshLayout.setSlingshotDistance(800);
+        //swipeRefreshLayout.setSlingshotDistance(800);
 //
 //        swipeRefreshLayout.setRefreshing(true);
 //        Thread thread = new Thread(){

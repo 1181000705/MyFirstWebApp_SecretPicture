@@ -1,16 +1,15 @@
 package com.example.appw.threeFragment;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.util.Log;
-import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -22,7 +21,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.appw.Data;
 import com.example.appw.R;
-//import com.example.myfirstwebapp.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,6 +31,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+//import android.support.v7.app.AppCompatActivity;
+//import android.support.v7.widget.LinearLayoutManager;
+//import android.support.v7.widget.RecyclerView;
+//import com.example.myfirstwebapp.R;
 
 public class recordActivity extends AppCompatActivity {
 
@@ -100,7 +103,7 @@ public class recordActivity extends AppCompatActivity {
         //设置触发刷新的距离
         swipeRefreshLayout.setDistanceToTriggerSync(200);
         //设置滑动的距离
-        swipeRefreshLayout.setSlingshotDistance(400);
+        //swipeRefreshLayout.setSlingshotDistance(400);
 //        swipeRefreshLayout.setRefreshing(true);
 
         Thread thread=new Thread(){

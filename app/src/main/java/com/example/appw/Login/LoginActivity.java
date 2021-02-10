@@ -1,8 +1,5 @@
 package com.example.appw.Login;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,6 +9,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -30,7 +30,6 @@ import com.wang.avi.AVLoadingIndicatorView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -125,15 +124,6 @@ public class LoginActivity extends AppCompatActivity {
                     Data.Userid="5";finish();
                 }else thread.start();
                 avLoadingIndicatorView.show();
-//                if ("威威喵".equals(user) && "123456".equals(pwd)) {
-//                    Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
-//                } else
-//                if (!"威威喵".equals(user)) {
-//                    edt_user.setError("用户名错误");
-//                }
-//                else if (!"123456".equals(pwd)) {
-//                    edt_pwd.setError("密码错误");
-//                }
             }
         });
         bbsign=findViewById(R.id.signup);

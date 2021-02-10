@@ -1,7 +1,6 @@
 package com.example.appw.TwoFragment;
 
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -20,10 +19,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -34,8 +29,11 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.appw.Adapter.RecyclerLineAdapter;
 import com.example.appw.Data;
-import com.example.appw.MainActivity;
 import com.example.appw.R;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -44,6 +42,8 @@ import java.util.List;
 import java.util.Map;
 
 public class TwoFragment extends Fragment implements MyDialog.OnCenterItemClickListeners {
+
+
     Handler handler1=new Handler(){
         @Override
         public void handleMessage(@NonNull Message msg) {
@@ -192,24 +192,7 @@ public class TwoFragment extends Fragment implements MyDialog.OnCenterItemClickL
         swipeRefreshLayout.setDistanceToTriggerSync(200);
 
         //设置滑动的距离
-        swipeRefreshLayout.setSlingshotDistance(800);
-//
-//        swipeRefreshLayout.setRefreshing(true);
-//        Thread thread = new Thread(){
-//            @Override
-//            public void run() {
-//                while (lineData.size()==0);
-////                Log
-//                Message m1=Message.obtain();
-//                handler2.sendMessage(m1);
-//            }
-//        };
-//
-////    开始刷新，false 取消刷新
-//        swipeRefreshLayout.setRefreshing(true);
-
-//        //判断是否正在刷新
-//        swipeRefreshLayout.isRefreshing();
+        //swipeRefreshLayout.setSlingshotDistance(800);
         adapter.setOnItemClickListener(new RecyclerLineAdapter.OnItemClickListener() {
             @Override
             public void onClick(int position) {
@@ -314,12 +297,12 @@ public class TwoFragment extends Fragment implements MyDialog.OnCenterItemClickL
         }
     }
     //Fragment中的onAttach方法
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        User = ((MainActivity) activity).getUser();
-        Pwd=((MainActivity) activity).getPwd();
-    }
+//    @Override
+//    public void onAttach(Activity activity) {
+//        super.onAttach(activity);
+//        User = ((MainActivity) activity).getUser();
+//        Pwd=((MainActivity) activity).getPwd();
+//    }
 //通过强转成宿主activity，就可以获取到传递过来的数据
 public  void GetRequest(final String UserID) {
     //请求地址

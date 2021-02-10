@@ -5,19 +5,19 @@ package com.example.appw.view;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentActivity;
+
+import com.example.appw.OneFragment.PictureSelectorFragment;
 import com.example.appw.R;
 import com.kevin.dialog.BaseDialog;
-//import com.kevin.imagecrop.R;
 
 /**
  * PictureSelectorDialog
@@ -95,7 +95,7 @@ public class PictureSelectorDialog extends BaseDialog implements View.OnClickLis
         super.show(activity.getSupportFragmentManager(), TAG);
     }
 
-    public void show(Fragment fragment) {
+    public void show(PictureSelectorFragment fragment) {
         super.show(fragment.getChildFragmentManager(), TAG);
     }
 

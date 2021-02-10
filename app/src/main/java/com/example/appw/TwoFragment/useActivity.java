@@ -1,12 +1,4 @@
 package com.example.appw.TwoFragment;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +8,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -27,7 +26,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.appw.Adapter.RecyclerLineAdapterDetele;
 import com.example.appw.Data;
-import com.example.appw.Login.LoginActivity;
 import com.example.appw.R;
 
 import org.json.JSONArray;
@@ -150,7 +148,7 @@ public class useActivity extends AppCompatActivity implements MyDialog.OnCenterI
         //设置触发刷新的距离
         swipeRefreshLayout.setDistanceToTriggerSync(200);
         //设置滑动的距离
-        swipeRefreshLayout.setSlingshotDistance(400);
+        //swipeRefreshLayout.setSlingshotDistance(400);
         swipeRefreshLayout.setRefreshing(true);
         adapter.setOnItemClickListener(new RecyclerLineAdapterDetele.OnItemClickListener(){
             @Override
