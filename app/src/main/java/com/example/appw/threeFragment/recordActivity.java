@@ -19,6 +19,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.appw.Adapter.RecyclerLineAdapterRecord;
 import com.example.appw.Data;
 import com.example.appw.R;
 
@@ -32,20 +33,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-//import android.support.v7.app.AppCompatActivity;
-//import android.support.v7.widget.LinearLayoutManager;
-//import android.support.v7.widget.RecyclerView;
-//import com.example.myfirstwebapp.R;
-
 public class recordActivity extends AppCompatActivity {
 
     List<Map<String, Object>> rcdData = new ArrayList<>();
     RecyclerView lineRecycler;
-    RecyclerLineAdapterRecord adapter;
+    RecyclerLineAdapterRecord adapter;//适配器
     SwipeRefreshLayout swipeRefreshLayout;
 
     ArrayList<String> names=new ArrayList<>();
     ArrayList<String> decs=new ArrayList<>();
+
     Handler handler1=new Handler(){
         @Override
         public void handleMessage(@NonNull Message msg) {
@@ -58,7 +55,6 @@ public class recordActivity extends AppCompatActivity {
         public void handleMessage(@NonNull Message msg) {
             super.handleMessage(msg);
             swipeRefreshLayout.setRefreshing(false);
-//            swipeRefreshLayout.setRefreshing(false);
             Log.e("updata&&&&&&&&&&&",rcdData.toString());
             adapter.notifyDataSetChanged();
 
@@ -84,10 +80,10 @@ public class recordActivity extends AppCompatActivity {
             @Override
             public void onRefresh() {
                 rcdData.clear();
-                RecordRequest(Data.Userid);
+                RecordRequest(Data.Userid);//哪一个用户
 //                test();
-                addlineDate();
-                adapter.notifyDataSetChanged();
+                addlineDate();//制作该用户的访客记录
+                adapter.notifyDataSetChanged();//通知适配器更新
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -103,7 +99,7 @@ public class recordActivity extends AppCompatActivity {
         //设置触发刷新的距离
         swipeRefreshLayout.setDistanceToTriggerSync(200);
         //设置滑动的距离
-        //swipeRefreshLayout.setSlingshotDistance(400);
+        swipeRefreshLayout.setSlingshotDistance(400);
 //        swipeRefreshLayout.setRefreshing(true);
 
         Thread thread=new Thread(){
@@ -113,7 +109,6 @@ public class recordActivity extends AppCompatActivity {
 
                 Message message=Message.obtain();
                 handler1.sendMessage(message);
-
                 RecordRequest(Data.Userid);
                 while (decs.size()==0)try {
                     sleep(500);
@@ -131,17 +126,19 @@ public class recordActivity extends AppCompatActivity {
         thread.start();
     }
 
+    //访客记录列表
     private void addlineDate(){
 
         Map<String, Object> map = null;
         for (int i = decs.size()-1; i >=0; i--) {
             map = new HashMap<>();
             map.put("pic", R.drawable.pflash);
-            map.put("name", "光认证成功");
+            map.put("name", "蜜象认证成功");
             map.put("desc", decs.get(i));
             rcdData.add(map);
         }
     }
+
     void test(){
         Map<String,Object> map=new HashMap<>();
         map.put("pic", R.drawable.pflash);

@@ -32,13 +32,10 @@
 
         <activity android:name="com.example.appw.Login.signupActivity" />
         <activity android:name="com.example.appw.Login.LoginActivity" />
-        <activity android:name="com.example.appw.TwoFragment.objrecordActivity" />
 
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
-
-        <activity android:name="com.example.appw.TwoFragment.useActivity" />
 
         <activity
             android:name="com.example.appw.MainActivity"

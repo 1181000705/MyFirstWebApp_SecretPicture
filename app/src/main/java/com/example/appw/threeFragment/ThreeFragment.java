@@ -30,9 +30,9 @@ public class ThreeFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        UserPicture.setImageResource(Data.userpic[Data.getuserwhere()]);
-        user_name.setText(Data.user_name[Data.getuserwhere()]);
-        user_val.setText(Data.user_val[Data.getuserwhere()]);
+        UserPicture.setImageResource(Data.userpic[Data.getuserwhere()]);//头像
+        user_name.setText(Data.user_name[Data.getuserwhere()]);//名字
+        user_val.setText(Data.user_val[Data.getuserwhere()]);//电话号码
     }
 
     @Nullable
@@ -51,19 +51,19 @@ public class ThreeFragment extends Fragment {
 //        leftIcon.setVisibility(isShowLeftIcon ? View.VISIBLE : View.INVISIBLE);//设置左侧箭头图标是否显示 rightDesc.setText(ta.getString(R.styleable.ItemView_right_text));//设置右侧文字描述
 //        bottomLine.setVisibility(isShowBottomLine ? View.VISIBLE : View.INVISIBLE);//设置底部图标是否显示
 //        rightArrow.setVisibility(isShowRightArrow ? View.VISIBLE : View.INVISIBLE);//设置右侧箭头图标是否显示
-        UserPicture=view.findViewById(R.id.h_head);
-        user_name=view.findViewById(R.id.user_name);
-        user_val=view.findViewById(R.id.user_val);
+        UserPicture=view.findViewById(R.id.h_head);//头像的位置
+        user_name=view.findViewById(R.id.user_name);//名字的位置
+        user_val=view.findViewById(R.id.user_val);//电话号码的位置
         UserPicture.setImageResource(Data.userpic[Data.getuserwhere()]);
         user_name.setText(Data.user_name[Data.getuserwhere()]);
         user_val.setText(Data.user_val[Data.getuserwhere()]);
-        Button button=view.findViewById(R.id.btn_login);
+        Button button=view.findViewById(R.id.btn_login);//退出登录的按钮
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (MainActivity.norlogin){
                     Intent intent = new Intent(getContext(), LoginActivity.class);
-                    startActivity(intent);
+                    startActivity(intent);//点击后进入登录界面
                     UserPicture.setImageResource(Data.userpic[Data.getuserpic(Integer.valueOf(Data.Userid))]);
                 }
                 else {
@@ -73,7 +73,7 @@ public class ThreeFragment extends Fragment {
             }
         });
 
-        LinearLayout infomation = view.findViewById(R.id.infomarion);
+        LinearLayout infomation = view.findViewById(R.id.infomarion);//我的资料
         infomation.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -82,7 +82,7 @@ public class ThreeFragment extends Fragment {
             }
         });
 
-        LinearLayout record = view.findViewById(R.id.records);
+        LinearLayout record = view.findViewById(R.id.records);//使用记录
         record.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -91,7 +91,7 @@ public class ThreeFragment extends Fragment {
             }
         });
 
-        LinearLayout modify = view.findViewById(R.id.modify);
+        LinearLayout modify = view.findViewById(R.id.modify);//修改密码
         modify.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -100,7 +100,7 @@ public class ThreeFragment extends Fragment {
             }
         });
 
-        LinearLayout instructions = view.findViewById(R.id.instructions);
+        LinearLayout instructions = view.findViewById(R.id.instructions);//使用说明
         instructions.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {

@@ -8,8 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
-//import android.support.annotation.NonNull;
-//import android.support.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -60,10 +58,11 @@ public class OneFragment extends PictureSelectorFragment {
         setOnPictureSelectedListener(new OnPictureSelectedListener() {
             @Override
             public void onPictureSelected(Uri fileUri, Bitmap bitmap) {
-                mPictureIv.setImageBitmap(bitmap);
+                mPictureIv.setImageBitmap(bitmap);//图标显示剪裁后的照片
 
-                String filePath = fileUri.getEncodedPath();
-                String imagePath = Uri.decode(filePath);
+                //String filePath = fileUri.getEncodedPath();
+                //String imagePath = Uri.decode(filePath);
+                String imagePath = "/sdcard/cropimage/";
                 Toast.makeText(getContext(), "图片已经保存到:" + imagePath, Toast.LENGTH_LONG).show();
             }
         });

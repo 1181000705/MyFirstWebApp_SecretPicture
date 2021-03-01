@@ -1,35 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swipe_refresh"
+        android:id="@+id/obj_refresh"
         android:layout_width="match_parent"
-        android:layout_height="603dp">
+        android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/line_recy_view"
+            android:id="@+id/obj_recy_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:listSelector="@drawable/item_selector" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-    <LinearLayout style="@style/wrap_layout">
-        <Button
-
-            android:id="@+id/adds"
-            android:layout_width="match_parent"
-            android:layout_height="32dp"
-            android:background="@drawable/style_btn_login"
-
-            android:text="添加智能设备"
-
-            android:textColor="#fcfcfc" />
-
-    </LinearLayout>
-
 
 </LinearLayout>

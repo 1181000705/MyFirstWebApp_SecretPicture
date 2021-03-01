@@ -1,4 +1,4 @@
-package com.example.appw.threeFragment;
+package com.example.appw.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -15,14 +15,11 @@ import com.example.appw.R;
 
 import java.util.List;
 import java.util.Map;
-
-//import android.support.v7.widget.RecyclerView;
-
-
+//为了日志
 public class RecyclerLineAdapterRecord extends RecyclerView.Adapter<RecyclerLineAdapterRecord.ViewHolder> {
 
     Context context;
-    List<Map<String, Object>> data;
+    List<Map<String, Object>> data;//这个data需要
     OnItemClickListener mOnItemClickListener;
 
     public RecyclerLineAdapterRecord(Context context, List<Map<String, Object>> data) {

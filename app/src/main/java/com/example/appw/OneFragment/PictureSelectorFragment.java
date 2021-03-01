@@ -30,7 +30,9 @@ import com.yalantis.ucrop.UCrop;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Calendar;
 
 
 /**
@@ -84,8 +86,8 @@ public abstract class PictureSelectorFragment extends Fragment implements Pictur
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mDestination = Uri.fromFile(new File(getContext().getCacheDir(), "cropImage.jpeg"));
-        mTempPhotoPath = Environment.getExternalStorageDirectory() + File.separator + "photo.jpeg";
+        mDestination = Uri.fromFile(new File(getContext().getCacheDir(), "cropImage.jpeg"));//最后文件的格式
+        mTempPhotoPath = Environment.getExternalStorageDirectory() + File.separator + "photo.jpeg";//要删除
         mSelectPictureDialog = PictureSelectorDialog.getInstance();
         mSelectPictureDialog.setOnSelectedListener(this);
     }
@@ -174,7 +176,7 @@ public abstract class PictureSelectorFragment extends Fragment implements Pictur
                     break;
                 // 直接从相册获取
                 case GALLERY_REQUEST_CODE:
-                    startCropActivity(data.getData());
+                    startCropActivity(data.getData());//data.getdata()就是destinationuri
                     break;
                 // 裁剪图片结果
                 case UCrop.REQUEST_CROP:
@@ -238,9 +240,32 @@ public abstract class PictureSelectorFragment extends Fragment implements Pictur
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            mOnPictureSelectedListener.onPictureSelected(resultUri, bitmap);
+            saveImage(bitmap, Calendar.getInstance().getTimeInMillis()+".jpg");
+            mOnPictureSelectedListener.onPictureSelected(resultUri, bitmap);//OneFragment要调用
         } else {
             Toast.makeText(getContext(), "无法剪切选择图片", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    //保存图片到项目文件夹下
+    public void saveImage(Bitmap bitmap,String picname){
+        File temp = new File("/sdcard/cropimage/");//自己另建文件
+        if (!temp.exists()){
+            temp.mkdir();
+        }
+        File f = new File("/sdcard/cropimage/",picname);
+        if (f.exists()){
+            f.delete();
+        }
+        try{
+            FileOutputStream out = new FileOutputStream(f);
+            bitmap.compress(Bitmap.CompressFormat.JPEG,90,out);
+            out.flush();
+            out.close();
+        }catch (FileNotFoundException e){
+            e.printStackTrace();
+        }catch (IOException e){
+            e.printStackTrace();
         }
     }
 

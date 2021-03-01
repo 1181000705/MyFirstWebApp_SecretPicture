@@ -22,26 +22,26 @@
             android:layout_centerVertical="true"
             android:scaleType="centerCrop" />
 
-        <TextView
-            android:id="@+id/tv_recy_item_1_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_toRightOf="@id/img_recy_item_1_pic"
-            android:textColor="@color/black"
-            android:textSize="23dp" />
+<!--        <TextView-->
+<!--            android:id="@+id/tv_recy_item_1_name"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginLeft="16dp"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:layout_toRightOf="@id/img_recy_item_1_pic"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="23dp" />-->
 
-        <TextView
-            android:id="@+id/tv_recy_item_1_desc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="41dp"
-            android:layout_toRightOf="@id/img_recy_item_1_pic"
-            android:textSize="18dp" />
+<!--        <TextView-->
+<!--            android:id="@+id/tv_recy_item_1_desc"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignParentBottom="true"-->
+<!--            android:layout_marginLeft="16dp"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:layout_marginBottom="41dp"-->
+<!--            android:layout_toRightOf="@id/img_recy_item_1_pic"-->
+<!--            android:textSize="18dp" />-->
 
         <Button
             android:id="@+id/btn_recy_item_1_detele"

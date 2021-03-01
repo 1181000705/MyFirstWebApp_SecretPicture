@@ -39,7 +39,6 @@ import java.util.List;
             viewPager = findViewById(R.id.view_pager);
             List<Fragment> fragments = new ArrayList<>();
             fragments.add(new OneFragment());
-            Fragment a = new OneFragment();
             fragments.add(new TwoFragment());
             fragments.add(new ThreeFragment());
 

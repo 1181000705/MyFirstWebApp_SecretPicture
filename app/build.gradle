@@ -2,11 +2,12 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 30
-    buildToolsVersion "30.0.2"
+    buildToolsVersion '30.0.2'
     defaultConfig {
         applicationId "com.example.appw"
         minSdkVersion 19
-        targetSdkVersion 30
+        //noinspection ExpiredTargetSdkVersion
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -39,6 +40,7 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
     implementation 'androidx.vectordrawable:vectordrawable:1.1.0'
     implementation files('libs/annotations.jar')
+    implementation 'androidx.fragment:fragment:1.1.0'
     //implementation 'com.android.support:support-annotations:28.0.0'
     //implementation 'com.android.support:support-v4:28.0.0'
     //implementation 'com.android.support.constraint:constraint-layout:1.1.3'
