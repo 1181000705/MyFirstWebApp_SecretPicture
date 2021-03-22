@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appw.R;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -33,7 +34,7 @@ public class RecyclerLineAdapterDetele extends RecyclerView.Adapter<RecyclerLine
 
     }
     public interface OnItemClickListener{
-        void onClick(View v, int position);//这里给出的position
+        void onClick(View v, int position) throws IOException;//这里给出的position
     }
 
     public void setOnItemClickListener(OnItemClickListener onItemClickListener ){
@@ -96,7 +97,7 @@ public class RecyclerLineAdapterDetele extends RecyclerView.Adapter<RecyclerLine
 //        Glide.with(context).load(data.get(list.get(i))).into(holder.img);//加载图片
 //        holder.name.setText(data.get(i).get("name").toString());
 //        holder.desc.setText(data.get(i).get("desc").toString());
-        holder.img.setTag(i);
+        holder.img.setTag(i);//他有标号0 1 2
         holder.delete.setTag(i);
 //        holder.name.setTag(i);
 //        holder.desc.setTag(i);
@@ -105,14 +106,22 @@ public class RecyclerLineAdapterDetele extends RecyclerView.Adapter<RecyclerLine
             holder.itemView.setOnClickListener( new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mOnItemClickListener.onClick(v,i);
+                    try {
+                        mOnItemClickListener.onClick(v,i);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             });
 
             holder.delete.setOnClickListener( new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mOnItemClickListener.onClick(v,i);
+                    try {
+                        mOnItemClickListener.onClick(v,i);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             });
         }
@@ -138,7 +147,6 @@ public class RecyclerLineAdapterDetele extends RecyclerView.Adapter<RecyclerLine
             delete=itemView.findViewById(R.id.btn_recy_item_1_detele);
 
             delete.setOnClickListener( RecyclerLineAdapterDetele.this);
-            //img.setOnClickListener(RecyclerLineAdapterDetele.this);
         }
     }
 

@@ -5,6 +5,7 @@ package com.example.appw.OneFragment;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -23,9 +24,12 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.appw.R;
+import com.example.appw.util.Constant;
 import com.example.appw.view.PictureSelectorDialog;
+import com.google.zxing.activity.CaptureActivity;
 import com.yalantis.ucrop.UCrop;
 
 import java.io.File;
@@ -46,7 +50,7 @@ import java.util.Calendar;
  * 注:如果您修改了本类请填写以下内容作为记录，如非本人操作劳烦通知，谢谢！！！
  * @author mender，Modified Date Modify Content:
  */
-public abstract class PictureSelectorFragment extends Fragment implements PictureSelectorDialog.OnSelectedListener {
+public class PictureSelectorFragment extends Fragment implements PictureSelectorDialog.OnSelectedListener {
 
     private static final int REQUEST_STORAGE_READ_ACCESS_PERMISSION = 101;
     private static final int REQUEST_STORAGE_WRITE_ACCESS_PERMISSION = 102;
@@ -76,6 +80,9 @@ public abstract class PictureSelectorFragment extends Fragment implements Pictur
      */
     private OnPictureSelectedListener mOnPictureSelectedListener;
 
+    private OnFragmentSelectedListener mCallback;//调式用
+    private String sessionid;
+
     /**
      * 剪切图片
      */
@@ -85,6 +92,7 @@ public abstract class PictureSelectorFragment extends Fragment implements Pictur
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         mDestination = Uri.fromFile(new File(getContext().getCacheDir(), "cropImage.jpeg"));//最后文件的格式
         mTempPhotoPath = Environment.getExternalStorageDirectory() + File.separator + "photo.jpeg";//要删除
@@ -120,6 +128,10 @@ public abstract class PictureSelectorFragment extends Fragment implements Pictur
                 pickFromGallery();
             } else if (requestCode == REQUEST_STORAGE_WRITE_ACCESS_PERMISSION) {
                 takePhoto();
+            }else if (requestCode == Constant.REQ_PERM_WRITE_EXTERNAL_STORAGE){
+                startQrCode();
+            }else if (requestCode == Constant.REQ_PERM_READ_EXTERNAL_STORAGE){
+                startQrCode();
             }
         }
     }
@@ -165,18 +177,54 @@ public abstract class PictureSelectorFragment extends Fragment implements Pictur
         }
     }
 
+    protected void startQrCode(){
+        //申请相机权限
+        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
+            // 申请权限
+            requestPermissions(new String[]{Manifest.permission.CAMERA}, Constant.REQ_PERM_WRITE_EXTERNAL_STORAGE);//这里去掉了activity
+            return;
+        }
+        //从相册选择申请权限
+        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            // 申请权限
+            requestPermissions( new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, Constant.REQ_PERM_READ_EXTERNAL_STORAGE);
+            return;
+        }
+        //二维码扫码
+        Intent intent = new Intent(getContext(), CaptureActivity.class);
+        startActivityForResult(intent, Constant.REQ_QR_CODE);
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK) {
             switch (requestCode) {
                 // 调用相机拍照
                 case CAMERA_REQUEST_CODE:
                     File temp = new File(mTempPhotoPath);
-                    startCropActivity(Uri.fromFile(temp));
+                    startCropActivity(Uri.fromFile(temp));//相机获得的开始剪裁图片
                     break;
                 // 直接从相册获取
                 case GALLERY_REQUEST_CODE:
                     startCropActivity(data.getData());//data.getdata()就是destinationuri
+                    break;
+                //扫描完后显示二维码信息
+                case Constant.REQ_QR_CODE:
+                    Bundle bundle = data.getExtras();
+                    sessionid = bundle.getString(Constant.INTENT_EXTRA_KEY_QR_SCAN);
+                    System.out.println(sessionid);
+
+//                    //fragment-to-fragment
+//                    TwoFragment twoFragment = new TwoFragment();
+//                    Bundle bundle1 = new Bundle();
+//                    //传递sessionid
+//                    bundle1.putString("sessionid",sessionid);
+//                    twoFragment.setArguments(bundle1);
+//                    showFragment(PictureSelectorFragment.this,twoFragment);
+//
+                    //++++++++++++
+                    mCallback.onFragmentSelected(sessionid);//调式用
                     break;
                 // 裁剪图片结果
                 case UCrop.REQUEST_CROP:
@@ -189,6 +237,22 @@ public abstract class PictureSelectorFragment extends Fragment implements Pictur
                 default:
                     break;
             }
+        }
+    }
+
+    //从fragment跳转到另一个fragment
+    private void showFragment(Fragment fragment1,Fragment fragment2){
+        //获取FragmentTransaction对象
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        //如果fragment2没有被添加，就添加它替换当前的fragment1
+        if (!fragment2.isAdded()){
+            System.out.println("没有加");
+            transaction.add(R.id.view_pager,fragment2)
+                    .addToBackStack(null).commitAllowingStateLoss();
+        }else {//如果已经添加过了的话就隐藏fragment1，显示fragment2
+            System.out.println("加了的");
+            transaction.hide(fragment1).show(fragment2)
+                    .addToBackStack(null).commitAllowingStateLoss();
         }
     }
 
@@ -243,14 +307,16 @@ public abstract class PictureSelectorFragment extends Fragment implements Pictur
             saveImage(bitmap, Calendar.getInstance().getTimeInMillis()+".jpg");
             mOnPictureSelectedListener.onPictureSelected(resultUri, bitmap);//OneFragment要调用
         } else {
-            Toast.makeText(getContext(), "无法剪切选择图片", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "零零零零无法剪切选择图片", Toast.LENGTH_SHORT).show();
         }
     }
 
     //保存图片到项目文件夹下
     public void saveImage(Bitmap bitmap,String picname){
         File temp = new File("/sdcard/cropimage/");//自己另建文件
+        System.out.println(temp+"咿呀咿呀哟");
         if (!temp.exists()){
+            System.out.println("创建呀");
             temp.mkdir();
         }
         File f = new File("/sdcard/cropimage/",picname);
@@ -356,6 +422,21 @@ public abstract class PictureSelectorFragment extends Fragment implements Pictur
          * @param bitmap
          */
         void onPictureSelected(Uri fileUri, Bitmap bitmap);
+    }
+
+
+    public interface OnFragmentSelectedListener {
+        public void onFragmentSelected(String info);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try {
+            mCallback = (OnFragmentSelectedListener)context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString() + "Mush implement OnFragmentSelectedListener ");
+        }
     }
 
 }

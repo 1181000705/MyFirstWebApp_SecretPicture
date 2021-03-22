@@ -6,8 +6,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -27,6 +30,8 @@ import com.example.appw.R;
 public class OneFragment extends PictureSelectorFragment {
 
     ImageView mPictureIv;
+    Button btnQrCode; // 扫码
+    TextView tvResult; // 结果
 
     public static OneFragment newInstance() {
         return new OneFragment();
@@ -42,6 +47,8 @@ public class OneFragment extends PictureSelectorFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mPictureIv = view.findViewById(R.id.main_frag_picture_iv);
+        btnQrCode = view.findViewById(R.id.btn_qrcode);
+        tvResult = view.findViewById(R.id.txt_result);//这个要修改
         initEvents();
     }
 
@@ -54,18 +61,33 @@ public class OneFragment extends PictureSelectorFragment {
             }
         });
 
+        btnQrCode.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                startQrCode();
+            }
+        });
+
         // 设置裁剪图片结果监听
         setOnPictureSelectedListener(new OnPictureSelectedListener() {
             @Override
             public void onPictureSelected(Uri fileUri, Bitmap bitmap) {
                 mPictureIv.setImageBitmap(bitmap);//图标显示剪裁后的照片
-
                 //String filePath = fileUri.getEncodedPath();
                 //String imagePath = Uri.decode(filePath);
                 String imagePath = "/sdcard/cropimage/";
                 Toast.makeText(getContext(), "图片已经保存到:" + imagePath, Toast.LENGTH_LONG).show();
             }
         });
+
+        //这里应该显示扫描后结果
+//        setOnPictureSelectedListenerx(new OnPictureSelectedListenerx() {
+//            @Override
+//            public void onPictureSelectedx(Uri fileUri, Bitmap bitmap) {
+//
+//            }
+//        });
     }
+
 
 }

@@ -11,6 +11,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.appw.Adapter.FragmentAdapter;
 import com.example.appw.OneFragment.OneFragment;
+import com.example.appw.OneFragment.PictureSelectorFragment;
 import com.example.appw.TwoFragment.TwoFragment;
 import com.example.appw.threeFragment.ThreeFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -22,7 +23,7 @@ import java.util.List;
      * Created by luo on 2019/7/3.
      */
 
-    public class MainActivity extends AppCompatActivity{
+    public class MainActivity extends AppCompatActivity implements PictureSelectorFragment.OnFragmentSelectedListener{
         public static  boolean norlogin=true;
         //String User="unLogin";
         //String Pwd="non";
@@ -34,9 +35,10 @@ import java.util.List;
             setContentView(R.layout.activity_main);
 
             initOneFragment();//新加的
+            getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.view_pager, new PictureSelectorFragment()).commit();//转换页面
 
             bnView = findViewById(R.id.nav_view);//下三标
-            viewPager = findViewById(R.id.view_pager);
+            viewPager = findViewById(R.id.view_pager);//一大空白
             List<Fragment> fragments = new ArrayList<>();
             fragments.add(new OneFragment());
             fragments.add(new TwoFragment());
@@ -92,6 +94,15 @@ import java.util.List;
         OneFragment mFragment = OneFragment.newInstance();
         transaction.replace(R.id.view_pager, mFragment, mFragment.getClass().getSimpleName());
         transaction.commit();
+    }
+
+    @Override
+    public void onFragmentSelected(String sessionid) {
+        TwoFragment twoFragment = new TwoFragment();
+        Bundle args = new Bundle();
+        args.putString("sessionid",sessionid);
+        twoFragment.setArguments(args);
+        getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.view_pager,twoFragment).commit();
     }
 
 //        //要获取的值  就是这个参数的值

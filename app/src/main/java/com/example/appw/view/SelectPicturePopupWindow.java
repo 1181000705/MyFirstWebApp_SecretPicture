@@ -12,7 +12,6 @@ import android.widget.Button;
 import android.widget.PopupWindow;
 
 import com.example.appw.R;
-//import com.example.dialog.BaseDialog;
 
 /**
  * 版权所有：XXX有限公司

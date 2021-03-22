@@ -1,6 +1,6 @@
 package com.example.appw.TwoFragment;
 
-import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -25,15 +25,17 @@ import com.example.appw.R;
 import com.example.appw.view.ThumbnailsWindowsx;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
-
-import static java.lang.Thread.sleep;
 
 public class TwoFragment extends Fragment implements ThumbnailsWindowsx.OnSelectedListener {
     Map<String, Bitmap> ObjData = new TreeMap<>();
@@ -42,7 +44,9 @@ public class TwoFragment extends Fragment implements ThumbnailsWindowsx.OnSelect
     SwipeRefreshLayout swipeRefreshLayout;
 
     private ThumbnailsWindowsx thumbnailsWindowsx;
-    private Context mContext;
+   // private Context mContext;
+    private String piccode;
+    private String sessionid = "fake_sessionid";
     private static ArrayList<String> paths = new ArrayList<String>();
 
     Handler handler2=new Handler(){
@@ -56,12 +60,20 @@ public class TwoFragment extends Fragment implements ThumbnailsWindowsx.OnSelect
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_two,container,false);
-       // setContentView(R.layout.fragment_two);//这里用到ThumWindow
         thumbnailsWindowsx = new ThumbnailsWindowsx(getContext());//定义一个上传的菜单
         FileRequest();//先去文件夹拉取图片
 //        ObjData.clear();
+
+        //++++++++这里接收二维码扫后的跳转
+        if (getArguments()!=null) {
+            //获取上一个碎片传递来的数据
+            sessionid = getArguments().getString("sessionid");
+            System.out.println(sessionid+"略略略");
+        }
+
 
         //这里配置的布局
         lineRecycler=(RecyclerView)view.findViewById(R.id.obj_recy_view);//单独一个个图片
@@ -104,7 +116,7 @@ public class TwoFragment extends Fragment implements ThumbnailsWindowsx.OnSelect
         //点击删除按钮
         adapter.setOnItemClickListener(new RecyclerLineAdapterDetele.OnItemClickListener(){
             @Override
-            public void onClick(View v, int position) {
+            public void onClick(View v, int position) throws IOException {
                 switch (v.getId()){
                     case R.id.btn_recy_item_1_detele://item的删除按钮
                         Toast.makeText(getContext(),"你点击了删除按钮"+(position+1),Toast.LENGTH_SHORT).show();
@@ -119,18 +131,19 @@ public class TwoFragment extends Fragment implements ThumbnailsWindowsx.OnSelect
                         break;
                     default:
                         Toast.makeText(getContext(),"你点击了item按钮"+(position+1),Toast.LENGTH_SHORT).show();
-                        thumbnailsWindowsx.showPopupMenu(v);//image就是按钮
+                        thumbnailsWindowsx.showPopupMenu(v);//image就是按钮弹出注册登录菜单
+                        piccode = PicCodeGenerator(paths.get(position));//这里生成密象码
                         break;
                 }
 
             }
         });
 
-        while (ObjData.size()==0)try {
-            sleep(500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        while (ObjData.size()==0)try {
+//            sleep(500);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
         Message m1=Message.obtain();
         handler2.sendMessage(m1);
 //        Thread thread = new Thread(){
@@ -149,11 +162,41 @@ public class TwoFragment extends Fragment implements ThumbnailsWindowsx.OnSelect
         return view;
     }//oncreat
 
-    private void FileReq()
-    {
-        FileRequest();
+    //生成密象码
+    public String PicCodeGenerator(String picturePath) throws IOException{
+        File file = new File(picturePath);
+        int length = (int)file.length();
+        MessageDigest md = null;
+        byte[] bt = picturePath.getBytes();
+
+        byte[] fileStream = new byte[length];
+        String code;
+        FileInputStream in = new FileInputStream(file);
+        in.read(fileStream);
+        try {
+            md = MessageDigest.getInstance("SHA-256");
+            md.update(bt);
+            code = bytes2Hex(md.digest());//转化为十六进制
+        }catch (NoSuchAlgorithmException e){
+            System.out.println("啦啦啦啦啦");
+            return null;
+        }
+        return code;
     }
 
+    private String bytes2Hex(byte[] bts){
+        String des = "";
+        String tmp = null;
+        for (int i = 0;i < bts.length;i++){
+            tmp = (Integer.toHexString(bts[i] & 0xFF));
+            if (tmp.length()==1){
+                des += "0";
+            }
+            des += tmp;
+        }
+        return des;
+    }
+    //删除文件
     public void DeleteFileRequest(int fileposition){
         File file = new File(paths.get(fileposition));
         file.delete();
@@ -190,25 +233,15 @@ public class TwoFragment extends Fragment implements ThumbnailsWindowsx.OnSelect
             if (!paths.isEmpty()) {
                 //System.out.println("paths的长度为"+paths.size());
                 for (int i = 0; i < paths.size(); i++) {
-//                    BitmapFactory.Options options = new BitmapFactory.Options();
-//                    options.inJustDecodeBounds = true;
-                 // Bitmap bitmap =BitmapFactory.decodeFile(paths.get(i));
-//                    options.inJustDecodeBounds = false;
-//                    int be = options.outHeight;
-////					 if (be <= 0) {
-////						 be = 10;
-////					 }
-//                    options.inSampleSize = be;
                     Bitmap bitmap = BitmapFactory.decodeFile(paths.get(i));
                     //System.out.println("bitmap的值为"+bitmap);
                     maps.put(paths.get(i), bitmap);
                 }
             }
         }else {
-            System.out.println("文件找不到");
+            System.out.println("文件找不到啦啦啦");
         }
-
-        return maps;
+      return maps;
     }
 
 
@@ -226,25 +259,6 @@ public class TwoFragment extends Fragment implements ThumbnailsWindowsx.OnSelect
             String ttemp = iterator.next();
             this.ObjData.put(ttemp,maps.get(ttemp));
         }
-      // this.ObjData = maps;
-//        Iterator<String> it = maps.keySet().iterator();//得到的是路径
-//        int i = 0;
-//        while (it.hasNext()){
-//            String path = (String) it.next();
-//            Bitmap bm = maps.get(path);
-//
-//            ImageView image = new ImageView(getContext());
-//            image.setImageBitmap(bm);//显示图片
-//            image.setId(i++);
-//            lineRecycler.addView(image);//这里注意下
-//            image.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    thumbnailsWindowsx.showPopupMenu(image);//image就是按钮
-//                }
-//            });
-//        }
-        //     lineRecycler.addView()//原本的目的应该是显示整个布局，这里不需要了
     }
 
 
@@ -253,23 +267,23 @@ public class TwoFragment extends Fragment implements ThumbnailsWindowsx.OnSelect
         switch (position) {
             case 0:
                 //注册按钮被点击
-                register();
+                Intent intent = new Intent(getContext(),RegisterActivity.class);
+                intent.putExtra("piccode",piccode);
+                intent.putExtra("sessionid",sessionid);
+                startActivity(intent);
+                //register();
                 break;
             case 1:
                 //登录按钮被点击
-                login();
+                Intent intent1 = new Intent(getContext(), LoginActivity.class);
+                intent1.putExtra("piccode",piccode);
+                intent1.putExtra("sesssion",sessionid);
+                startActivity(intent1);
+                //login();
                 break;
             default:
                 break;
         }
     }
 
-    //注册
-    private void register(){
-
-    }
-    //登录
-    private void login(){
-
-    }
 }

@@ -21,6 +21,7 @@ public class Data {
     public Data(){}
     public static  String newuser="";
     public static  String newpwd="";
+
     public static  String[] user_name={
             "新用户",
             "夏时雨",

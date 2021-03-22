@@ -42,18 +42,10 @@ public class ThreeFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_three, container, false);
 
-//        TypedArray ta = getContext().obtainStyledAttributes(attrs, R.styleable.ItemView);
-//        isShowBottomLine = ta.getBoolean(R.styleable.ItemView_show_bottom_line, true);//得到是否显示底部下划线属性
-//        isShowLeftIcon = ta.getBoolean(R.styleable.ItemView_show_left_icon, true);//得到是否显示左侧图标属性标识
-//        isShowRightArrow = ta.getBoolean(R.styleable.ItemView_show_right_arrow, true);//得到是否显示右侧图标属性标识
-//        leftIcon.setBackground(ta.getDrawable(R.styleable.ItemView_left_icon));//设置左侧图标
-//        leftTitle.setText(ta.getString(R.styleable.ItemView_left_text));//设置左侧标题文字
-//        leftIcon.setVisibility(isShowLeftIcon ? View.VISIBLE : View.INVISIBLE);//设置左侧箭头图标是否显示 rightDesc.setText(ta.getString(R.styleable.ItemView_right_text));//设置右侧文字描述
-//        bottomLine.setVisibility(isShowBottomLine ? View.VISIBLE : View.INVISIBLE);//设置底部图标是否显示
-//        rightArrow.setVisibility(isShowRightArrow ? View.VISIBLE : View.INVISIBLE);//设置右侧箭头图标是否显示
         UserPicture=view.findViewById(R.id.h_head);//头像的位置
         user_name=view.findViewById(R.id.user_name);//名字的位置
         user_val=view.findViewById(R.id.user_val);//电话号码的位置
+
         UserPicture.setImageResource(Data.userpic[Data.getuserwhere()]);
         user_name.setText(Data.user_name[Data.getuserwhere()]);
         user_val.setText(Data.user_val[Data.getuserwhere()]);

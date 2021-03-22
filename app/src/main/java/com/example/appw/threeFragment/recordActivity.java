@@ -62,6 +62,7 @@ public class recordActivity extends AppCompatActivity {
     };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+       // Intent intent = getIntent();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_record);
 
